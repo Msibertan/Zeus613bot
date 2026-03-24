@@ -1,0 +1,212 @@
+{
+    "7291312605": {
+        "name": "Егор",
+        "docs": 114,
+        "types": {
+            "dover": 11,
+            "contract": 23,
+            "invoice_statement": 35,
+            "customs_pack3": 10,
+            "qr": 16,
+            "psd_util": 2,
+            "psd_brief": 3,
+            "psd_cv": 7,
+            "invoice_red": 1,
+            "customs_calc": 1,
+            "queue": 5
+        },
+        "brands": {
+            "audi": 2,
+            "toyota": 8,
+            "bmw": 11,
+            "nissan": 5,
+            "kia": 6,
+            "ford": 2,
+            "vw": 3,
+            "geely": 5,
+            "mercedes": 2
+        },
+        "achievements": [
+            "doc_first",
+            "geo_europe",
+            "time_early",
+            "time_0900",
+            "geo_asia",
+            "old_school",
+            "geo_usa",
+            "day_sat",
+            "luck_gai",
+            "doc_100",
+            "time_1300",
+            "brand_bmw"
+        ]
+    },
+    "8321452138": {
+        "name": "ХАТАБ",
+        "docs": 99,
+        "types": {
+            "contract": 16,
+            "invoice_statement": 62,
+            "invoice_all": 1,
+            "customs_pack3": 10,
+            "psd_util": 5,
+            "invoice_red": 3,
+            "psd_brief": 2
+        },
+        "brands": {
+            "volvo": 1,
+            "toyota": 5,
+            "kia": 7,
+            "nissan": 2,
+            "vw": 3,
+            "audi": 2,
+            "geely": 2,
+            "bmw": 1
+        },
+        "achievements": [
+            "doc_first",
+            "old_school",
+            "time_early",
+            "geo_asia",
+            "time_1300",
+            "luck_gai",
+            "geo_europe",
+            "master_invoice",
+            "time_0900"
+        ]
+    },
+    "8492732487": {
+        "name": "Ivan",
+        "docs": 98,
+        "types": {
+            "qr": 16,
+            "invoice_statement": 27,
+            "invoice_all": 2,
+            "contract": 25,
+            "customs_pack3": 16,
+            "invoice_red": 7,
+            "psd_cv": 4,
+            "psd_brief": 1
+        },
+        "brands": {
+            "kia": 10,
+            "toyota": 9,
+            "mercedes": 3,
+            "nissan": 11,
+            "audi": 3,
+            "bmw": 8,
+            "volvo": 2,
+            "skoda": 4,
+            "vw": 4
+        },
+        "achievements": [
+            "doc_first",
+            "geo_asia",
+            "geo_europe",
+            "old_school",
+            "luck_gai",
+            "brand_nissan",
+            "time_1300",
+            "brand_kia",
+            "day_sat"
+        ]
+    },
+    "7516383471": {
+        "name": "D V",
+        "docs": 26,
+        "types": {
+            "psd_brief": 12,
+            "invoice_statement": 6,
+            "psd_cv": 6,
+            "qr": 2
+        },
+        "brands": {
+            "toyota": 2,
+            "kia": 5,
+            "bmw": 2,
+            "audi": 1,
+            "nissan": 2,
+            "skoda": 2,
+            "mercedes": 1
+        },
+        "achievements": [
+            "doc_first",
+            "geo_asia",
+            "time_early",
+            "geo_europe",
+            "old_school",
+            "luck_gai"
+        ]
+    },
+    "8419547307": {
+        "name": "Denis Prigon",
+        "docs": 87,
+        "types": {
+            "customs_pack3": 21,
+            "contract": 39,
+            "service": 2,
+            "invoice_statement": 25
+        },
+        "brands": {
+            "skoda": 7,
+            "kia": 14,
+            "toyota": 8,
+            "vw": 7,
+            "nissan": 3,
+            "volvo": 1,
+            "renault": 4,
+            "ford": 4,
+            "bmw": 1,
+            "geely": 2,
+            "audi": 2
+        },
+        "achievements": [
+            "doc_first",
+            "time_early",
+            "geo_europe",
+            "time_0900",
+            "old_school",
+            "geo_asia",
+            "day_sat",
+            "time_1300",
+            "brand_kia",
+            "geo_usa",
+            "luck_gai"
+        ]
+    },
+    "8523013758": {
+        "name": "Артем",
+        "docs": 6,
+        "types": {
+            "dover": 3,
+            "invoice_statement": 1,
+            "contract": 2
+        },
+        "brands": {
+            "kia": 1,
+            "bmw": 1
+        },
+        "achievements": [
+            "doc_first",
+            "time_1300",
+            "old_school",
+            "geo_europe"
+        ]
+    },
+    "7552690430": {
+        "name": "Владимир",
+        "docs": 3,
+        "types": {
+            "customs_calc": 1,
+            "psd_brief": 1,
+            "qr": 1
+        },
+        "brands": {
+            "bmw": 1
+        },
+        "achievements": [
+            "doc_first",
+            "time_1300"
+        ]
+    }
+}

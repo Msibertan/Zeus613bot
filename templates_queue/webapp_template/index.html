@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Талон регистрации в электронной очереди</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <!-- Подключаем шрифт Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #1e705b; /* Зеленый фон сверху */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Задний фон паттерном */
+        .bg-pattern {
+            position: absolute;
+            top: 200px; /* Начинается под зеленой шапкой */
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #f6f7f5;
+            background-image: radial-gradient(#d5d7d3 2px, transparent 2px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 60px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Логотипы */
+        .logos {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .logos a {
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .logos a:hover {
+            opacity: 0.8;
+        }
+        .logos a:not(:last-child) {
+            margin-right: 20px;
+        }
+        .logos img {
+            height: 60px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Статус "Зарегистрирован" */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e5f6f1;
+            color: #1a6350;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .status-badge::before {
+            content: '✓';
+            margin-right: 6px;
+            font-weight: bold;
+        }
+
+        /* Предупреждение (желтое) */
+        .warning-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            color: #8a6d3b;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        .warning-icon {
+            color: #f5c00e;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #111827;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        /* Сетка с данными (как на скриншоте) */
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .data-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .data-label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .data-value {
+            font-size: 16px;
+            color: #111827;
+            font-weight: 600;
+        }
+
+        /* Нижний текст: водитель и пункт */
+        .footer-text {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 24px;
+            margin-bottom: 30px;
+        }
+
+        .driver-info {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .checkpoint-info {
+            color: #9ca3af;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* Кнопки */
+        .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #166551;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #114c3d;
+        }
+
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .btn-secondary:hover {
+            background-color: #e5e7eb;
+        }
+
+        /* Адаптивность для телефонов */
+        @media (max-width: 768px) {
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                margin-top: 20px;
+                border-radius: 0;
+                padding: 24px 20px;
+            }
+            .actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+            .logos {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logos a:not(:last-child) {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* --- МОДАЛЬНОЕ ОКНО --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-window {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #9ca3af;
+            line-height: 1;
+            background: none;
+            border: none;
+        }
+
+        .modal-header {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111827;
+            text-align: center;
+        }
+
+        /* Большой текст внутри модалки */
+        .modal-text-line {
+            font-size: 18px;
+            color: #374151;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .modal-text-line strong {
+            color: #111827;
+        }
+        
+        .qr-placeholder {
+            margin-top: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+
+<!-- Модальное окно (скрыто по умолчанию) -->
+<div class="modal-overlay" id="infoModal">
+    <div class="modal-window">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-header">Информация о ТС</div>
+        
+        <div class="modal-text-line">Марка: <strong id="modal-brand">-</strong></div>
+        <div class="modal-text-line">Модель: <strong id="modal-model">-</strong></div>
+        <div class="modal-text-line">VIN: <strong id="modal-vin">-</strong></div>
+        <div class="modal-text-line">Водитель: <strong id="modal-fio">Не указан</strong></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="logos">
+        <a href="https://gpk.gov.by/" target="_blank" rel="noopener noreferrer">
+            <img src="logo1.png" alt="Логотип 1">
+        </a>
+        <a href="https://gpk.gov.by/" target="_blank" rel="noopener noreferrer">
+            <img src="logo2.png" alt="Логотип 2">
+        </a>
+    </div>
+
+    <div class="status-badge">Зарегистрирован</div>
+
+    <div class="warning-box">
+        <div class="warning-icon">⚠</div>
+        <div>Ожидайте вызова на табло. Приглашение в пункт пропуска осуществляется по номеру вашего талона. Не покидайте зону ожидания.</div>
+    </div>
+
+    <h1>Талон регистрации в электронной очереди</h1>
+
+    <div class="data-grid">
+        <!-- Талон -->
+        <div class="data-card">
+            <div class="data-label">ТАЛОН</div>
+            <div class="data-value" id="val-queue">Номер загружается...</div>
+        </div>
+        <!-- Время -->
+        <div class="data-card">
+            <div class="data-label">ВРЕМЯ</div>
+            <div class="data-value" id="val-time">-</div>
+        </div>
+        <!-- Марка -->
+        <div class="data-card">
+            <div class="data-label">МАРКА</div>
+            <div class="data-value" id="val-brand">-</div>
+        </div>
+        <!-- Модель -->
+        <div class="data-card">
+            <div class="data-label">МОДЕЛЬ</div>
+            <div class="data-value" id="val-model">-</div>
+        </div>
+        <!-- ВИН -->
+        <div class="data-card">
+            <div class="data-label">ВИН КОД</div>
+            <div class="data-value" id="val-vin">-</div>
+        </div>
+        <!-- ФИО -->
+        <div class="data-card">
+            <div class="data-label">ФИО</div>
+            <div class="data-value" id="val-fio">-</div>
+        </div>
+    </div>
+
+    <div class="footer-text">
+        <div class="driver-info">Водитель: <span>Не указан</span></div>
+        <div class="checkpoint-info">Пункт пропуска: Регистрация в зоне ожидания. Зона ожидания: Импорт автотранспорта (таможенная очистка). Категория ТС: 015732. Тип очереди: 784523. Номер канала: 7643928172.</div>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-primary" id="btn-status" onclick="checkStatus()">Проверить статус в очереди</button>
+        <button class="btn btn-secondary" onclick="openModal()">Информация о транспортном средстве</button>
+    </div>
+</div>
+
+<script>
+  // Функция для получения параметров из url (из ссылки бота)
+  function getParams() {
+    var params = {};
+    var queryString = window.location.search.substring(1);
+    if (!queryString) return params;
+    
+    var vars = queryString.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if(pair[0]) {
+            params[decodeURIComponent(pair[0])] = decodeURIComponent((pair[1] || '').replace(/\+/g, ' '));
+        }
+    }
+    return params;
+  }
+
+  // Подставляем параметры после загрузки страницы
+  document.addEventListener('DOMContentLoaded', function() {
+    var p = getParams();
+    
+    if(p.queue_num) document.getElementById('val-queue').textContent = p.queue_num;
+    if(p.time) document.getElementById('val-time').textContent = p.time;
+    if(p.brand) {
+        document.getElementById('val-brand').textContent = p.brand;
+        document.getElementById('modal-brand').textContent = p.brand;
+    }
+    if(p.model) {
+        document.getElementById('val-model').textContent = p.model;
+        document.getElementById('modal-model').textContent = p.model;
+    }
+    if(p.vin_code) {
+        document.getElementById('val-vin').textContent = p.vin_code;
+        document.getElementById('modal-vin').textContent = p.vin_code;
+    }
+    
+    if(p.fio) {
+        document.getElementById('val-fio').textContent = p.fio;
+    }
+  });
+
+  // Логика кнопки "Проверить статус"
+  function checkStatus() {
+    const btn = document.getElementById('btn-status');
+    const originalText = btn.textContent;
+    const originalBg = btn.style.backgroundColor;
+
+    // Меняем кнопку на "обновление"
+    btn.textContent = 'Обновление данных...';
+    btn.style.backgroundColor = '#9ca3af';
+    btn.style.cursor = 'wait';
+
+    // Имитация загрузки на 1.5 секунды
+    setTimeout(() => {
+        // Возвращаем кнопку в норму
+        btn.textContent = originalText;
+        btn.style.backgroundColor = '';
+        btn.style.cursor = 'pointer';
+        
+        // Показываем окно со "статусом"
+        alert('Статус обновлен!\n\nВы зарегистрированы в очереди. Ожидайте вызова на табло.');
+    }, 1500);
+  }
+
+  // Логика модального окна
+  function openModal() {
+    document.getElementById('infoModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('infoModal').style.display = 'none';
+  }
+
+  // Закрытие при клике мимо окна
+  window.onclick = function(event) {
+    const modal = document.getElementById('infoModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Virtual environments
+venv/
+bot/venv/
+.env
+
+# Python compilation files
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
+
+# Temp folders and generated data
+temp/
+generated/
+temp_lts_extract/
+clients_archive/
+USER_SCRIPTS/
+
+# OS-specific
+.DS_Store
+desktop.ini
